@@ -1,21 +1,57 @@
+import Link from "next/link"
+import { profile } from "@/lib/profile"
+import { TrainerCard } from "@/components/now/trainer-card"
+import { TypingText } from "@/components/now/typing-text"
+
 export default function NowPage() {
   return (
-    <section className="grid place-items-center min-h-[50vh]">
-      <div className="text-center">
-        <p
-          lang="ja"
-          className="font-mono text-muted text-ui tracking-[0.3em]"
-        >
-          現在地 / NOW
+    <section className="grid gap-12 md:gap-16">
+      {/* Hero */}
+      <header className="space-y-4">
+        <p className="font-mono text-ui text-amber tracking-[0.3em]">
+          <span lang="ja">現在地</span> · NOW
         </p>
-        <p
-          className="font-display mt-6 leading-none"
+        <h1
+          className="font-display text-fg leading-[0.9]"
           style={{ fontSize: "var(--text-display)" }}
         >
-          <span className="text-red">UNDER</span>{" "}
-          <span className="text-fg">CONSTRUCTION</span>
+          <TypingText
+            text={`> hello, ${profile.name.toLowerCase()}_`}
+            cursor={false}
+            charDelay={0.05}
+            startDelay={0.3}
+            className="block font-mono text-red text-ui md:text-h2 leading-none mb-4 tracking-tight"
+          />
+          <span className="block">
+            <span className="text-red">{profile.name.split(" ")[0]}</span>{" "}
+            <span className="text-fg">
+              {profile.name.split(" ").slice(1).join(" ") || "."}
+            </span>
+          </span>
+        </h1>
+        <p className="font-mono text-ui text-muted max-w-prose">
+          {profile.role} <span className="text-line">·</span> {profile.tagline}
         </p>
-        <p className="font-mono text-muted mt-4">// arrives Sprint 2</p>
+      </header>
+
+      {/* Trainer card */}
+      <TrainerCard />
+
+      {/* CTA — board the train to WORKS */}
+      <div className="flex flex-wrap items-center gap-4">
+        <Link
+          href="/works"
+          className="group inline-flex items-center gap-3 font-mono text-ui px-6 py-3 bg-amber text-void hover:bg-yellow transition-colors"
+          style={{ boxShadow: "4px 4px 0 0 var(--color-p5-black)" }}
+        >
+          <span className="font-display tracking-wider">BOARD NEXT TRAIN</span>
+          <span className="transition-transform group-hover:translate-x-1">
+            ▸▸
+          </span>
+        </Link>
+        <p className="font-mono text-micro text-muted">
+          // next stop: <span lang="ja">仕事</span> / WORKS
+        </p>
       </div>
     </section>
   )
