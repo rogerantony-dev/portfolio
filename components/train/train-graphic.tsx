@@ -9,8 +9,8 @@ export function TrainGraphic({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 -10 140 66"
-      width="140"
-      height="61"
+      width="105"
+      height="46"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
       aria-hidden="true"
