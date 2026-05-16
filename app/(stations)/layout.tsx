@@ -3,6 +3,7 @@ import { Carriage } from "@/components/train/carriage"
 import { RouteMap } from "@/components/train/route-map"
 import { StatusBar } from "@/components/train/status-bar"
 import { Transition } from "@/components/train/transition"
+import { TunnelOverlay } from "@/components/train/tunnel-overlay"
 
 export default function StationsLayout({
   children,
@@ -19,6 +20,7 @@ export default function StationsLayout({
       </Carriage>
       <RouteMap />
       <ArrivingAnnouncer />
+      <TunnelOverlay />
     </>
   )
 }
