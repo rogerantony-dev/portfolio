@@ -31,8 +31,8 @@ export type Profile = {
 export const profile: Profile = {
   name: "Roger Antony",
   callsign: "RA-ROOK",
-  role: "student · developer · designer",
-  bio: "Building things that move. Currently learning by doing — projects, courses, late nights.",
+  role: "developer",
+  bio: "Building things that move. Learning by doing — projects, side experiments, late nights.",
   location: "Earth, en route",
   tagline: "I make small things on the internet.",
   skills: [
