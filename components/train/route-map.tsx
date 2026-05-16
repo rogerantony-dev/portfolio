@@ -54,7 +54,7 @@ export function RouteMap() {
             aria-hidden="true"
             className="hidden md:block absolute pointer-events-none"
             style={{
-              top: "-3.25rem",
+              top: "-2.25rem",
               left: `${trainLeftPct}%`,
               transition:
                 "left 700ms cubic-bezier(0.65, 0, 0.35, 1)",
