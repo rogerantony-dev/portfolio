@@ -38,8 +38,8 @@ export const profile: Profile = {
   skills: [
     { name: "FRONT-END", level: 78, color: "red" },
     { name: "BACK-END",  level: 54, color: "amber" },
-    { name: "DESIGN",    level: 71, color: "cyan" },
-    { name: "CAFFEINE",  level: 99, color: "yellow" },
+    { name: "AI",        level: 71, color: "cyan" },
+    { name: "DIET COKE", level: 99, color: "yellow" },
   ],
   socials: {
     github:   "https://github.com/rogerantony-dev",
