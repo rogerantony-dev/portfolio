@@ -1,10 +1,13 @@
 ---
 title: Portfolio Foundation + Train Carriage Frame (Sprint 1)
 type: feat
-status: active
+status: build-complete
 date: 2026-05-16
 brainstorm: docs/brainstorms/2026-05-16-portfolio-website-brainstorm.md
+repo: https://github.com/rogerantony-dev/portfolio
 ---
+
+> **Status (2026-05-16):** Sprint 1 build is complete and pushed to GitHub. All four phases done in one session: scaffold, design tokens + atmosphere, carriage frame + 6 route stubs, quality pass + README. Local verification clean (build, typecheck, lint, 8/8 routes serve 200, custom 404 + favicon + OG image work). Awaiting user-driven Vercel deploy to flip remaining ACs (Lighthouse mobile-network metrics, Analytics events, production CLS). Known caveats: ESLint flat-config left as no-op pending Sprint 5 polish; mobile <640px route map uses scroll-snap, may want a drawer pattern in a later sprint.
 
 # ✨ Portfolio Foundation + Train Carriage Frame (Sprint 1)
 
