@@ -1,18 +1,16 @@
-// SVG locomotive + 2 coaches, styled after Indian Railways ICF stock.
-// Engine: WAP-style flat-front, red body with yellow nose flashes.
-// Coaches: ICF blue with yellow upper-stripe, row of small windows,
-// "VELVET LINE" / coach-class stencil, end-of-coach doors.
-// Idle life: exhaust puffs from the smokestack, headlight pulse — all
-// via SMIL <animate> so the component stays RSC. The outer wrapper in
-// RouteMap adds a 1px vertical bob (Motion, reduced-motion-aware).
-//
-// viewBox extends above 0 to give exhaust room to rise.
+// SVG locomotive + one ICF-style coach, Indian Railways styling.
+// Engine: WAP-class flat-front, red body with yellow nose flashes,
+// smokestack + idle exhaust puffs, pulsing headlight glow.
+// Coach: ICF blue with yellow upper-stripe, row of small windows,
+// "VELVET LINE" stencil, end-of-coach door.
+// All idle animations are SMIL <animate> so the component stays RSC.
+// The 1.5px bob is applied by the outer wrapper in RouteMap.
 export function TrainGraphic({ className }: { className?: string }) {
   return (
     <svg
-      viewBox="0 -10 220 66"
-      width="180"
-      height="54"
+      viewBox="0 -10 140 66"
+      width="140"
+      height="61"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
       aria-hidden="true"
@@ -146,7 +144,7 @@ export function TrainGraphic({ className }: { className?: string }) {
         <rect x="58" y="30" width="3" height="2.5" fill="#2A3340" />
       </g>
 
-      {/* ────── COACH 1 (ICF, VELVET LINE branded) ────── */}
+      {/* ────── COACH (ICF, VELVET LINE branded) ────── */}
       <g transform="translate(61 0)">
         {/* Roof shadow */}
         <rect x="0" y="18" width="72" height="2" fill="#0F1F4D" />
@@ -178,36 +176,6 @@ export function TrainGraphic({ className }: { className?: string }) {
         {/* End door */}
         <rect x="62" y="26" width="6" height="14" fill="#0A0E14" />
         <rect x="64.5" y="32" width="1" height="2" fill="#FFD500" />
-        {/* Coupler */}
-        <rect x="72" y="30" width="3" height="2.5" fill="#2A3340" />
-      </g>
-
-      {/* ────── COACH 2 (numbered class marker) ────── */}
-      <g transform="translate(136 0)">
-        <rect x="0" y="18" width="72" height="2" fill="#0F1F4D" />
-        <rect x="0" y="20" width="72" height="22" fill="#1E3A8A" />
-        <rect x="0" y="22" width="72" height="2.5" fill="#FFD500" />
-        <rect x="3" y="26" width="6" height="6" fill="#0A0E14" />
-        <rect x="11" y="26" width="6" height="6" fill="#0A0E14" />
-        <rect x="19" y="26" width="6" height="6" fill="#0A0E14" />
-        <rect x="27" y="26" width="6" height="6" fill="#0A0E14" />
-        <rect x="35" y="26" width="6" height="6" fill="#0A0E14" />
-        <rect x="43" y="26" width="6" height="6" fill="#0A0E14" />
-        <rect x="51" y="26" width="6" height="6" fill="#0A0E14" />
-        <text
-          x="32"
-          y="40"
-          fontFamily="monospace"
-          fontSize="3"
-          fill="#FFD500"
-          textAnchor="middle"
-          fontWeight="bold"
-          letterSpacing="0.5"
-        >
-          A1 · GENERAL
-        </text>
-        <rect x="62" y="26" width="6" height="14" fill="#0A0E14" />
-        <rect x="64.5" y="32" width="1" height="2" fill="#FFD500" />
       </g>
 
       {/* ────── BOGIES / WHEELS ────── */}
@@ -237,7 +205,7 @@ export function TrainGraphic({ className }: { className?: string }) {
           stroke="#2A3340"
           strokeWidth="0.4"
         />
-        {/* Coach 1 — 2 bogies */}
+        {/* Coach — 2 bogies */}
         <circle
           cx="72"
           cy="46"
@@ -254,27 +222,10 @@ export function TrainGraphic({ className }: { className?: string }) {
           stroke="#2A3340"
           strokeWidth="0.4"
         />
-        {/* Coach 2 — 2 bogies */}
-        <circle
-          cx="148"
-          cy="46"
-          r="3"
-          fill="#0A0A0A"
-          stroke="#2A3340"
-          strokeWidth="0.4"
-        />
-        <circle
-          cx="200"
-          cy="46"
-          r="3"
-          fill="#0A0A0A"
-          stroke="#2A3340"
-          strokeWidth="0.4"
-        />
       </g>
 
       {/* ────── RAIL SHADOW under the wheels ────── */}
-      <rect x="2" y="50" width="206" height="1" fill="#2A3340" opacity="0.5" />
+      <rect x="2" y="50" width="130" height="1" fill="#2A3340" opacity="0.5" />
     </svg>
   )
 }
