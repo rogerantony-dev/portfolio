@@ -1,0 +1,23 @@
+"use client"
+
+import { AnimatePresence, motion } from "motion/react"
+import { usePathname } from "next/navigation"
+import { dur, ease } from "@/lib/motion"
+
+export function Transition({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname()
+
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.div
+        key={pathname}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -8 }}
+        transition={{ duration: dur.fast, ease: ease.snap }}
+      >
+        {children}
+      </motion.div>
+    </AnimatePresence>
+  )
+}
