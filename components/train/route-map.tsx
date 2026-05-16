@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useRef, type KeyboardEvent } from "react"
-import { motion } from "motion/react"
+import { motion, useReducedMotion } from "motion/react"
 import clsx from "clsx"
 import { dur, ease } from "@/lib/motion"
 import { stations, getStationByPath } from "./stations"
@@ -13,6 +13,7 @@ export function RouteMap() {
   const pathname = usePathname()
   const active = getStationByPath(pathname) ?? stations[0]
   const linksRef = useRef<(HTMLAnchorElement | null)[]>([])
+  const reducedMotion = useReducedMotion() === true
 
   function handleKeyDown(e: KeyboardEvent<HTMLAnchorElement>, index: number) {
     if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return
@@ -63,13 +64,24 @@ export function RouteMap() {
                     className="relative shrink-0"
                   >
                     {/* The Velvet Line train — sits above the active dot
-                        and animates between stations via shared layoutId */}
+                        and animates between stations via shared layoutId.
+                        Gentle idle bob unless reduced motion is preferred. */}
                     {isActive && (
                       <motion.div
                         layoutId="velvet-line-train"
-                        transition={{ duration: dur.normal, ease: ease.train }}
+                        animate={
+                          reducedMotion ? undefined : { y: [0, -1.5, 0] }
+                        }
+                        transition={{
+                          layout: { duration: dur.normal, ease: ease.train },
+                          y: {
+                            duration: 2.4,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          },
+                        }}
                         className="hidden md:block absolute left-1/2 pointer-events-none"
-                        style={{ top: "-3.75rem", x: "-50%" }}
+                        style={{ top: "-4.25rem", x: "-50%" }}
                       >
                         <TrainGraphic />
                       </motion.div>

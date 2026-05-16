@@ -2,13 +2,17 @@
 // Engine: WAP-style flat-front, red body with yellow nose flashes.
 // Coaches: ICF blue with yellow upper-stripe, row of small windows,
 // "VELVET LINE" / coach-class stencil, end-of-coach doors.
-// Wheels are pure black; coupler nubs between cars.
+// Idle life: exhaust puffs from the smokestack, headlight pulse — all
+// via SMIL <animate> so the component stays RSC. The outer wrapper in
+// RouteMap adds a 1px vertical bob (Motion, reduced-motion-aware).
+//
+// viewBox extends above 0 to give exhaust room to rise.
 export function TrainGraphic({ className }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 220 56"
+      viewBox="0 -10 220 66"
       width="180"
-      height="46"
+      height="54"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
       aria-hidden="true"
@@ -16,6 +20,77 @@ export function TrainGraphic({ className }: { className?: string }) {
     >
       {/* ────── ENGINE (WAP-class loco silhouette) ────── */}
       <g>
+        {/* Smokestack */}
+        <rect x="44" y="10" width="4" height="4" fill="#0A0A0A" />
+        {/* Exhaust puffs (three, staggered) — rise + grow + fade */}
+        <g>
+          <circle cx="46" cy="11" r="1.5" fill="#8A95A5" opacity="0">
+            <animate
+              attributeName="cy"
+              values="11;-6"
+              dur="1.8s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="r"
+              values="1.5;3"
+              dur="1.8s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="opacity"
+              values="0;0.55;0"
+              dur="1.8s"
+              repeatCount="indefinite"
+            />
+          </circle>
+          <circle cx="46" cy="11" r="1.5" fill="#8A95A5" opacity="0">
+            <animate
+              attributeName="cy"
+              values="11;-6"
+              dur="1.8s"
+              begin="0.6s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="r"
+              values="1.5;3"
+              dur="1.8s"
+              begin="0.6s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="opacity"
+              values="0;0.55;0"
+              dur="1.8s"
+              begin="0.6s"
+              repeatCount="indefinite"
+            />
+          </circle>
+          <circle cx="46" cy="11" r="1.5" fill="#8A95A5" opacity="0">
+            <animate
+              attributeName="cy"
+              values="11;-6"
+              dur="1.8s"
+              begin="1.2s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="r"
+              values="1.5;3"
+              dur="1.8s"
+              begin="1.2s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="opacity"
+              values="0;0.55;0"
+              dur="1.8s"
+              begin="1.2s"
+              repeatCount="indefinite"
+            />
+          </circle>
+        </g>
         {/* Roof / hood */}
         <rect x="6" y="14" width="48" height="6" fill="#8B0000" />
         {/* Main red body */}
@@ -35,12 +110,26 @@ export function TrainGraphic({ className }: { className?: string }) {
           stroke="#2A3340"
           strokeWidth="0.4"
         />
-        {/* Twin headlights */}
+        {/* Twin headlights (hard core) */}
         <circle cx="4" cy="24" r="1.4" fill="#FFF8E7" />
         <circle cx="4" cy="38" r="1.4" fill="#FFF8E7" />
-        {/* Soft headlight glow */}
-        <circle cx="4" cy="24" r="2.6" fill="#FFF8E7" opacity="0.25" />
-        <circle cx="4" cy="38" r="2.6" fill="#FFF8E7" opacity="0.25" />
+        {/* Soft headlight glow — pulses */}
+        <circle cx="4" cy="24" r="2.6" fill="#FFF8E7">
+          <animate
+            attributeName="opacity"
+            values="0.15;0.45;0.15"
+            dur="2.4s"
+            repeatCount="indefinite"
+          />
+        </circle>
+        <circle cx="4" cy="38" r="2.6" fill="#FFF8E7">
+          <animate
+            attributeName="opacity"
+            values="0.15;0.45;0.15"
+            dur="2.4s"
+            repeatCount="indefinite"
+          />
+        </circle>
         {/* Devanagari "रेल" on the engine flank */}
         <text
           x="50"
