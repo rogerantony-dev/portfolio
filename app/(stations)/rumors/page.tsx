@@ -1,22 +1,26 @@
+import { MangaPanels } from "@/components/rumors/manga-panels"
+import { posts } from "@/lib/posts"
+
 export default function RumorsPage() {
   return (
-    <section className="grid place-items-center min-h-[50vh]">
-      <div className="text-center">
-        <p
-          lang="ja"
-          className="font-mono text-muted text-ui tracking-[0.3em]"
-        >
-          噂 / RUMORS
+    <section className="grid gap-10">
+      <header className="space-y-3">
+        <p className="font-mono text-ui text-amber tracking-[0.3em]">
+          <span lang="ja">噂</span> · RUMORS · [{String(posts.length).padStart(2, "0")} articles]
         </p>
-        <p
-          className="font-display mt-6 leading-none"
-          style={{ fontSize: "var(--text-display)" }}
+        <h1
+          className="font-display text-fg leading-[0.9]"
+          style={{ fontSize: "var(--text-hero)" }}
         >
-          <span className="text-red">UNDER</span>{" "}
-          <span className="text-fg">CONSTRUCTION</span>
+          <span className="text-red">RUMORS FROM</span>{" "}
+          <span className="text-fg">MEMENTOS</span>
+        </h1>
+        <p className="font-mono text-ui text-muted max-w-prose">
+          // notes, essays, devlogs — anything worth writing down
         </p>
-        <p className="font-mono text-muted mt-4">// arrives Sprint 4</p>
-      </div>
+      </header>
+
+      <MangaPanels posts={posts} />
     </section>
   )
 }
