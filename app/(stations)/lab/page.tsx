@@ -1,22 +1,34 @@
+import { Terminal } from "@/components/lab/terminal"
+
 export default function LabPage() {
   return (
-    <section className="grid place-items-center min-h-[50vh]">
-      <div className="text-center">
-        <p
-          lang="ja"
-          className="font-mono text-muted text-ui tracking-[0.3em]"
-        >
-          実験 / LAB
+    <section className="grid gap-8">
+      <header className="space-y-3">
+        <p className="font-mono text-ui text-amber tracking-[0.3em]">
+          <span lang="ja">実験</span> · LAB · interactive experiments
         </p>
-        <p
-          className="font-display mt-6 leading-none"
-          style={{ fontSize: "var(--text-display)" }}
+        <h1
+          className="font-display text-fg leading-[0.9]"
+          style={{ fontSize: "var(--text-hero)" }}
         >
-          <span className="text-red">UNDER</span>{" "}
-          <span className="text-fg">CONSTRUCTION</span>
+          <span className="text-red">PLAY</span>{" "}
+          <span className="text-fg">AROUND</span>
+        </h1>
+        <p className="font-mono text-ui text-muted max-w-prose">
+          // small things that move. click anywhere in the terminal below to focus.
+          <br />
+          // try <span className="text-fg">whoami</span>,{" "}
+          <span className="text-fg">skills</span>,{" "}
+          <span className="text-fg">goto works</span>, or{" "}
+          <span className="text-fg">help</span>
         </p>
-        <p className="font-mono text-muted mt-4">// arrives Sprint 5</p>
-      </div>
+      </header>
+
+      <Terminal />
+
+      <p className="font-mono text-micro text-muted">
+        // more demos arriving — sketches, canvas toys, three.js scenes
+      </p>
     </section>
   )
 }
