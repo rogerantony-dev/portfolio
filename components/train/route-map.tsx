@@ -35,7 +35,7 @@ export function RouteMap() {
       className="fixed bottom-0 inset-x-0 border-t border-line bg-void/85 backdrop-blur-sm"
       style={{ zIndex: "var(--z-routemap)" }}
     >
-      <div className="mx-auto max-w-[1280px] px-4 md:px-6 py-4 md:pt-20 md:pb-5">
+      <div className="mx-auto max-w-[1280px] px-4 md:px-6 py-2 md:pt-10 md:pb-2">
         {/* ── Rail + dots row ── */}
         <div className="relative">
           {/* Amber rail behind the dots */}
@@ -54,7 +54,7 @@ export function RouteMap() {
             aria-hidden="true"
             className="hidden md:block absolute pointer-events-none"
             style={{
-              top: "-2.25rem",
+              top: "-2rem",
               left: `${trainLeftPct}%`,
               transition:
                 "left 700ms cubic-bezier(0.65, 0, 0.35, 1)",
@@ -88,7 +88,7 @@ export function RouteMap() {
                     onKeyDown={(e) => handleKeyDown(e, i)}
                     aria-current={isActive ? "page" : undefined}
                     className={clsx(
-                      "group relative grid place-items-center min-h-11 min-w-11",
+                      "group relative grid place-items-center min-h-9 min-w-9 md:min-h-10 md:min-w-10",
                       "outline-none focus-visible:ring-2 focus-visible:ring-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-void rounded-full"
                     )}
                   >
@@ -118,8 +118,8 @@ export function RouteMap() {
           </ul>
         </div>
 
-        {/* ── ARRIVING text — below the dots, centered ── */}
-        <div className="mt-3 flex items-center justify-center gap-3 font-mono text-ui">
+        {/* ── ARRIVING text — below the dots, centered, tight ── */}
+        <div className="mt-1 flex items-center justify-center gap-2 font-mono text-micro">
           <span aria-hidden="true" className="text-amber">
             ▸
           </span>
