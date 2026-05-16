@@ -36,10 +36,10 @@ export const profile: Profile = {
   location: "Earth, en route",
   tagline: "I make small things on the internet.",
   skills: [
-    { name: "FRONT-END", level: 78, color: "red" },
-    { name: "BACK-END",  level: 54, color: "amber" },
-    { name: "AI",        level: 71, color: "cyan" },
-    { name: "DIET COKE", level: 99, color: "yellow" },
+    { name: "FRONT-END",   level: 78, color: "red" },
+    { name: "BACK-END",    level: 72, color: "amber" },
+    { name: "CLAUDE CODE", level: 71, color: "cyan" },
+    { name: "DIET COKE",   level: 99, color: "yellow" },
   ],
   socials: {
     github:   "https://github.com/rogerantony-dev",
