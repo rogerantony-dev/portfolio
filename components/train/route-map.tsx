@@ -3,8 +3,11 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useRef, type KeyboardEvent } from "react"
+import { motion } from "motion/react"
 import clsx from "clsx"
+import { dur, ease } from "@/lib/motion"
 import { stations, getStationByPath } from "./stations"
+import { TrainGraphic } from "./train-graphic"
 
 export function RouteMap() {
   const pathname = usePathname()
@@ -57,8 +60,20 @@ export function RouteMap() {
                   <li
                     key={station.id}
                     style={{ scrollSnapAlign: "center" }}
-                    className="shrink-0"
+                    className="relative shrink-0"
                   >
+                    {/* The Velvet Line train — sits above the active dot
+                        and animates between stations via shared layoutId */}
+                    {isActive && (
+                      <motion.div
+                        layoutId="velvet-line-train"
+                        transition={{ duration: dur.normal, ease: ease.train }}
+                        className="hidden md:block absolute left-1/2 pointer-events-none"
+                        style={{ top: "-3.75rem", x: "-50%" }}
+                      >
+                        <TrainGraphic />
+                      </motion.div>
+                    )}
                     <Link
                       href={station.href}
                       ref={(el) => {
