@@ -9,8 +9,8 @@ export function TrainGraphic({ className }: { className?: string }) {
   return (
     <svg
       viewBox="0 -10 140 66"
-      width="140"
-      height="61"
+      width="70"
+      height="33"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
       aria-hidden="true"
@@ -99,7 +99,7 @@ export function TrainGraphic({ className }: { className?: string }) {
         {/* Cab roof rim */}
         <rect x="32" y="14" width="22" height="2" fill="#FFD500" />
         {/* Driver windscreen */}
-        <rect x="34" y="16" width="18" height="6" fill="#0A0E14" />
+        <rect x="34" y="16" width="18" height="6" fill="#000000" />
         <line
           x1="43"
           y1="16"
@@ -153,13 +153,13 @@ export function TrainGraphic({ className }: { className?: string }) {
         {/* Yellow upper stripe */}
         <rect x="0" y="22" width="72" height="2.5" fill="#FFD500" />
         {/* Window row */}
-        <rect x="3" y="26" width="6" height="6" fill="#0A0E14" />
-        <rect x="11" y="26" width="6" height="6" fill="#0A0E14" />
-        <rect x="19" y="26" width="6" height="6" fill="#0A0E14" />
-        <rect x="27" y="26" width="6" height="6" fill="#0A0E14" />
-        <rect x="35" y="26" width="6" height="6" fill="#0A0E14" />
-        <rect x="43" y="26" width="6" height="6" fill="#0A0E14" />
-        <rect x="51" y="26" width="6" height="6" fill="#0A0E14" />
+        <rect x="3" y="26" width="6" height="6" fill="#000000" />
+        <rect x="11" y="26" width="6" height="6" fill="#000000" />
+        <rect x="19" y="26" width="6" height="6" fill="#000000" />
+        <rect x="27" y="26" width="6" height="6" fill="#000000" />
+        <rect x="35" y="26" width="6" height="6" fill="#000000" />
+        <rect x="43" y="26" width="6" height="6" fill="#000000" />
+        <rect x="51" y="26" width="6" height="6" fill="#000000" />
         {/* Stencil */}
         <text
           x="32"
@@ -174,7 +174,7 @@ export function TrainGraphic({ className }: { className?: string }) {
           VELVET LINE
         </text>
         {/* End door */}
-        <rect x="62" y="26" width="6" height="14" fill="#0A0E14" />
+        <rect x="62" y="26" width="6" height="14" fill="#000000" />
         <rect x="64.5" y="32" width="1" height="2" fill="#FFD500" />
       </g>
 

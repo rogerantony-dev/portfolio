@@ -1,7 +1,9 @@
+import Link from "next/link"
 import { ArrivingAnnouncer } from "@/components/train/arriving-announcer"
 import { Carriage } from "@/components/train/carriage"
 import { RouteMap } from "@/components/train/route-map"
 import { StatusBar } from "@/components/train/status-bar"
+import { Button } from "@/components/ui/button"
 
 export default function NotFound() {
   return (
@@ -22,14 +24,15 @@ export default function NotFound() {
                 <span className="text-fg">NOT FOUND</span>
               </p>
               <p className="font-mono text-muted mt-4">
-                // this stop doesn't exist on the velvet line
+                // this stop doesn&apos;t exist on the velvet line
               </p>
-              <a
-                href="/"
-                className="font-mono text-ui mt-6 inline-block px-6 py-2 border border-amber text-amber hover:bg-amber hover:text-void transition-colors"
-              >
-                ▸ RETURN TO NOW
-              </a>
+              <Button
+                variant="pa-amber-outline"
+                size="lg-pa"
+                className="mt-6"
+                nativeButton={false}
+                render={<Link href="/">▸ RETURN TO NOW</Link>}
+              />
             </div>
           </section>
         </main>

@@ -10,6 +10,7 @@ A Persona-5-themed portfolio site. Navigated as a train (the "Velvet Line") movi
 - **Language:** TypeScript 5 (strict + `noUncheckedIndexedAccess`)
 - **Styling:** Tailwind CSS v4 (CSS-first `@theme` config)
 - **Animation:** [motion](https://motion.dev) (formerly Framer Motion)
+- **Component primitives:** [shadcn/ui](https://ui.shadcn.com) with the [Base UI](https://base-ui.com) variant — `Button` and `Dialog` only; everything else hand-rolled
 - **Fonts:** Anton, Inter, JetBrains Mono, Noto Sans JP (via `next/font/google`)
 - **Music embed:** Spotify Playlist Embed (iframe)
 - **Hosting:** Vercel
@@ -46,6 +47,60 @@ Drop your CV at `public/cv.pdf` and the download button on `/contact` works.
 | `pnpm start` | Serve the production build |
 | `pnpm typecheck` | TypeScript strict check |
 | `pnpm lint` | ESLint (minimal config — see Sprint 5 polish notes) |
+| `pnpm test` | Run Vitest test suite (jsdom + RTL) |
+| `pnpm test:watch` | Watch-mode tests |
+
+## Component Library
+
+This site adopts [shadcn/ui](https://ui.shadcn.com) with the [Base UI](https://base-ui.com) primitive variant (`style: "base-nova"` in `components.json`, installed via `pnpm dlx shadcn@4.7.0 init -d --base base`). The replaceable interactive surface is small — `Button` and `Dialog` only. Everything else (train graphic, route map, atmosphere overlays, manga panels, terminal, the calling-cards grid layout itself) is hand-rolled and is the site's identity.
+
+**Convention:** `components/ui/*` = shadcn-generated, upgradable via `pnpm dlx shadcn add`. `components/<feature>/*` = bespoke, never touched by the CLI.
+
+### Adding a component
+
+```bash
+pnpm dlx shadcn@4.7.0 add <component>   # always pin the version
+```
+
+Pinning reduces supply-chain risk (a compromised registry can't inject malicious TSX if your `add` targets a specific version). After running, `git diff components/ui/` and review carefully.
+
+### Velvet Line button variants (`pa-*`)
+
+Custom button variants live in **`components/ui/button-variants.ts`** — a separate file from `button.tsx`. This ensures `pnpm dlx shadcn add button --overwrite` only regenerates `button.tsx`; the `pa-*` extensions survive untouched.
+
+| Variant            | Use case                       | Shadow |
+|--------------------|--------------------------------|--------|
+| `pa-amber`         | Primary CTA (BOARD NEXT TRAIN) | 6px filled  |
+| `pa-yellow`        | Secondary CTA (DOWNLOAD CV)    | 6px filled  |
+| `pa-amber-outline` | Reactive action (RETRY, RETURN TO NOW) | 3px outline |
+| `pa-line-outline`  | Tertiary action                 | 3px outline |
+
+If you regenerate `button.tsx`, restore: (1) the import from `./button-variants`, (2) the `data-variant` / `data-size` attribute emission. The sentinel comment at the top of `button.tsx` and the inline-snapshot test in `tests/ui/button-variants.test.ts` will fail loudly if the variants vanish.
+
+### Dialog accessibility contract
+
+Base UI's `Dialog` primitive enforces:
+
+- focus trap inside the popup when open
+- focus restore to the trigger on close
+- Escape key closes (no manual listener required)
+- backdrop click closes (no manual listener required)
+- `inert` applied to siblings when `modal={true}` (2026 best practice; modern browsers use this in place of `aria-modal` on the popup)
+- `data-state="open|closed"` on backdrop, popup, and trigger — deterministic selector for automated tests and AI agents
+
+`tests/ui/dialog-a11y.test.tsx` covers the basics in jsdom. Full keyboard-trap verification requires browser-mode tests (deferred).
+
+### Agent-native targeting
+
+Every shadcn primitive emits `data-slot="<component>"`. Our customizations add:
+
+- `data-variant={variant}` and `data-size={size}` on `Button` — agents can target buttons by intent without scraping class names (which `tailwind-merge` can re-order).
+- `data-testid="project-card-${id}"` on each calling-card trigger.
+- `data-testid="project-dialog"` on the modal popup.
+
+### Primitive-split exit clause
+
+We use Base UI primitives via `style: "base-nova"`. If a future shadcn block requires Radix-only primitives (most community blocks still do as of 2026), install Radix alongside Base UI rather than uprooting. The `pa-*` variants live in `button-variants.ts` and don't care which primitive backend ships the underlying Button or Dialog. Mixing within a single component is bad (incompatible event models); mixing across components is fine.
 
 ## Project Structure
 
@@ -73,13 +128,20 @@ components/
 ├── rumors/              # MangaPanels grid
 └── lab/                 # Interactive Terminal
 
+components/ui/           # shadcn/ui primitives (Button, Dialog) — upgradable via CLI
+                         # pa-* button variants live in button-variants.ts (regen-safe)
+
 lib/
 ├── profile.ts           # ← edit this
 ├── projects.ts          # ← edit this
 ├── posts.ts             # ← edit this
 ├── bgm.ts               # ← edit this
 ├── fonts.ts             # next/font setup
-└── motion.ts            # ease + duration constants
+├── motion.ts            # ease + duration constants
+└── utils.ts             # cn() helper for shadcn primitives
+
+tests/ui/                # Vitest + RTL — button-variants snapshot, dialog a11y,
+                         # token integrity
 
 docs/
 ├── brainstorms/         # Design rationale

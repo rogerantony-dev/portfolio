@@ -2,6 +2,7 @@ import Link from "next/link"
 import { profile } from "@/lib/profile"
 import { TrainerCard } from "@/components/now/trainer-card"
 import { TypingText } from "@/components/now/typing-text"
+import { Button } from "@/components/ui/button"
 
 export default function NowPage() {
   return (
@@ -39,16 +40,21 @@ export default function NowPage() {
 
       {/* CTA — board the train to WORKS */}
       <div className="flex flex-wrap items-center gap-4">
-        <Link
-          href="/works"
-          className="group inline-flex items-center gap-3 font-mono text-ui px-6 py-3 bg-amber text-void hover:bg-yellow transition-colors"
-          style={{ boxShadow: "4px 4px 0 0 var(--color-p5-black)" }}
-        >
-          <span className="font-display tracking-wider">BOARD NEXT TRAIN</span>
-          <span className="transition-transform group-hover:translate-x-1">
-            ▸▸
-          </span>
-        </Link>
+        <Button
+          variant="pa-amber"
+          size="lg-pa"
+          nativeButton={false}
+          render={
+            <Link href="/works" className="group gap-3">
+              <span className="font-display tracking-wider normal-case">
+                BOARD NEXT TRAIN
+              </span>
+              <span className="transition-transform group-hover:translate-x-1">
+                ▸▸
+              </span>
+            </Link>
+          }
+        />
         <p className="font-mono text-micro text-muted">
           // next stop: <span lang="ja">仕事</span> / WORKS
         </p>

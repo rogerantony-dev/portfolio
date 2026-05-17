@@ -29,43 +29,25 @@ export default function BgmPage() {
         </div>
 
         <div className="p-4 md:p-6 grid gap-4">
-          {/* The Spotify embed itself */}
-          <iframe
-            title={bgm.playlistName}
-            src={`https://open.spotify.com/embed/playlist/${bgm.playlistId}?utm_source=generator&theme=0`}
-            width="100%"
-            height="380"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-            className="rounded-md"
-            style={{ border: 0 }}
-          />
-          <p className="font-mono text-micro text-muted">
-            // swap the playlist ID in <code className="text-fg">lib/bgm.ts</code> to use your own playlist
-          </p>
+          {/* Wrapper radius must match (or exceed) Spotify's internal
+              panel radius (~12px) so the iframe's white body is clipped
+              behind Spotify's own rounded corners. The playlist embed
+              renders taller than a single-album embed since it lists
+              every track inline — bump height to 480 so the visible
+              tracklist isn't hidden behind a scroll bar. */}
+          <div className="rounded-2xl overflow-hidden bg-void">
+            <iframe
+              title={bgm.playlistName}
+              src={`https://open.spotify.com/embed/${bgm.embedPath}?utm_source=generator&theme=0`}
+              width="100%"
+              height="480"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+              className="block"
+              style={{ border: 0, colorScheme: "dark", background: "transparent" }}
+            />
+          </div>
         </div>
-      </div>
-
-      {/* Static tracklist mirror */}
-      <div className="space-y-4">
-        <p className="font-mono text-ui text-amber tracking-[0.3em]">
-          ▸ TRACKLIST
-        </p>
-        <ul className="border border-line/40 divide-y divide-line/40">
-          {bgm.tracks.map((track) => (
-            <li
-              key={track.n}
-              className="grid grid-cols-[auto_1fr_auto] items-center gap-4 px-4 py-3 font-mono text-ui hover:bg-elevated/40 transition-colors"
-            >
-              <span className="text-muted w-6 tabular-nums">{track.n}</span>
-              <div className="min-w-0">
-                <p className="text-fg truncate">{track.title}</p>
-                <p className="text-muted text-micro truncate">{track.artist}</p>
-              </div>
-              <span className="text-muted tabular-nums">{track.duration}</span>
-            </li>
-          ))}
-        </ul>
       </div>
     </section>
   )
