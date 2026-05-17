@@ -1,5 +1,7 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
+
 export default function StationError({
   reset,
 }: {
@@ -18,13 +20,15 @@ export default function StationError({
         <p className="font-mono text-muted mt-4">
           // the train hit a fault. try again.
         </p>
-        <button
+        <Button
           type="button"
+          variant="pa-amber-outline"
+          size="lg-pa"
           onClick={reset}
-          className="font-mono text-ui mt-6 px-6 py-2 border border-amber text-amber hover:bg-amber hover:text-void transition-colors"
+          className="mt-6"
         >
           ▸ RETRY
-        </button>
+        </Button>
       </div>
     </section>
   )

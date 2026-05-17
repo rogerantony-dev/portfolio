@@ -1,4 +1,5 @@
 import { profile } from "@/lib/profile"
+import { Button } from "@/components/ui/button"
 
 type ContactLink = {
   label: string
@@ -61,7 +62,7 @@ export default function ContactPage() {
             <a
               href={c.href}
               target={c.external ? "_blank" : undefined}
-              rel={c.external ? "noreferrer noopener" : undefined}
+              rel={c.external ? "noopener noreferrer" : undefined}
               className="group block border border-line/60 bg-elevated/40 px-5 py-4 hover:border-amber hover:bg-elevated transition-colors"
             >
               <p className="font-mono text-micro text-amber tracking-[0.3em]">
@@ -77,15 +78,18 @@ export default function ContactPage() {
 
       {/* CV Download */}
       <div className="flex flex-wrap items-center gap-4">
-        <a
-          href={profile.cvUrl}
-          download
-          className="group inline-flex items-center gap-3 font-mono text-ui px-6 py-3 bg-yellow text-void hover:bg-amber transition-colors"
-          style={{ boxShadow: "4px 4px 0 0 var(--color-p5-black)" }}
-        >
-          <span aria-hidden="true">⬇</span>
-          <span className="font-display tracking-wider">DOWNLOAD CV</span>
-        </a>
+        <Button
+          variant="pa-yellow"
+          size="lg-pa"
+          render={
+            <a href={profile.cvUrl} download className="gap-3">
+              <span aria-hidden="true">⬇</span>
+              <span className="font-display tracking-wider normal-case">
+                DOWNLOAD CV
+              </span>
+            </a>
+          }
+        />
       </div>
     </section>
   )
