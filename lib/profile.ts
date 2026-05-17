@@ -43,9 +43,9 @@ export const profile: Profile = {
   ],
   socials: {
     github:   "https://github.com/rogerantony-dev",
-    linkedin: "https://linkedin.com/in/your-handle",
-    twitter:  "https://twitter.com/your-handle",
-    email:    "hello@timeless.co",
+    linkedin: "https://linkedin.com/in/roger-antony/",
+    twitter:  "https://x.com/rogerantony27",
+    email:    "roger27connect@gmail.com",
   },
   cvUrl: "/cv.pdf",
 }

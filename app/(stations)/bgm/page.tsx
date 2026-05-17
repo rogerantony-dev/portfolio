@@ -29,17 +29,21 @@ export default function BgmPage() {
         </div>
 
         <div className="p-4 md:p-6 grid gap-4">
-          {/* The Spotify embed itself */}
-          <iframe
-            title={bgm.playlistName}
-            src={`https://open.spotify.com/embed/playlist/${bgm.playlistId}?utm_source=generator&theme=0`}
-            width="100%"
-            height="380"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-            className="rounded-md"
-            style={{ border: 0 }}
-          />
+          {/* Wrapper radius must match (or exceed) Spotify's internal
+              panel radius (~12px) so the iframe's white body is clipped
+              behind Spotify's own rounded corners. */}
+          <div className="rounded-2xl overflow-hidden bg-void">
+            <iframe
+              title={bgm.playlistName}
+              src={`https://open.spotify.com/embed/${bgm.embedPath}?utm_source=generator&theme=0`}
+              width="100%"
+              height="380"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+              className="block"
+              style={{ border: 0, colorScheme: "dark", background: "transparent" }}
+            />
+          </div>
           <p className="font-mono text-micro text-muted">
             // swap the playlist ID in <code className="text-fg">lib/bgm.ts</code> to use your own playlist
           </p>

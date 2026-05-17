@@ -11,7 +11,7 @@ export default function OG() {
         style={{
           width: "100%",
           height: "100%",
-          background: "#0A0E14",
+          background: "#000000",
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",

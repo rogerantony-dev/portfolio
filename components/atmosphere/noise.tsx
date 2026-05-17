@@ -13,7 +13,7 @@ export function Noise() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 opacity-[0.03] mix-blend-overlay"
+      className="pointer-events-none fixed inset-0 opacity-[0.05] mix-blend-screen"
       style={{
         zIndex: "var(--z-overlay-noise)",
         backgroundImage: `url("${NOISE_SVG}")`,

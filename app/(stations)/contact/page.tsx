@@ -86,9 +86,6 @@ export default function ContactPage() {
           <span aria-hidden="true">⬇</span>
           <span className="font-display tracking-wider">DOWNLOAD CV</span>
         </a>
-        <p className="font-mono text-micro text-muted">
-          // drop a PDF at <code className="text-fg">public/cv.pdf</code> to enable this
-        </p>
       </div>
     </section>
   )

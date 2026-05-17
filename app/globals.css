@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  /* ── Palette: Terminal (default UI) ── */
-  --color-void: #0A0E14;
-  --color-panel: #11161D;
-  --color-elevated: #1A2029;
-  --color-line: #2A3340;
+  /* ── Palette: Terminal (default UI) — OLED black canvas ── */
+  --color-void: #000000;
+  --color-panel: #08090C;
+  --color-elevated: #11141A;
+  --color-line: #232A36;
   --color-fg: #E4E8EE;
   --color-muted: #8A95A5;
   --color-cyan: #5BC0EB;

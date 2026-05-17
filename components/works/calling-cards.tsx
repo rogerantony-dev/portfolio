@@ -156,7 +156,7 @@ export function CallingCards() {
                       )}
                       style={{ boxShadow: "3px 3px 0 0 var(--color-p5-black)" }}
                     >
-                      ▸ LIVE DEMO
+                      ▸ LIVE
                     </a>
                   )}
                   {active.links.repo && (
