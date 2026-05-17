@@ -38,7 +38,7 @@ export const profile: Profile = {
   skills: [
     { name: "FRONT-END",   level: 78, color: "red" },
     { name: "BACK-END",    level: 72, color: "amber" },
-    { name: "CLAUDE CODE", level: 71, color: "cyan" },
+    { name: "CLAUDE CODE", level: 99, color: "cyan" },
     { name: "DIET COKE",   level: 99, color: "yellow" },
   ],
   socials: {
