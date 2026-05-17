@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 @theme {
   /* ── Palette: Terminal (default UI) — OLED black canvas ── */
@@ -48,12 +49,63 @@
   --z-overlay-vig: 48;
   --z-statusbar: 40;
   --z-routemap: 40;
+  --z-modal: 70;
   --z-content: 10;
 
   --container-carriage: 1280px;
   --spacing-station-y: 6rem;
 
   color-scheme: dark;
+
+  /* ── shadcn/ui expected variables — aliased to project tokens.       │
+     │  Keep these as alias-only so re-running `pnpm dlx shadcn add`     │
+     │  doesn't conflict with the design system. Edit the underlying    │
+     │  project token (--color-*) above, NOT these aliases.             */
+  --background: var(--color-void);
+  --foreground: var(--color-fg);
+  --card: var(--color-elevated);
+  --card-foreground: var(--color-fg);
+  --popover: var(--color-elevated);
+  --popover-foreground: var(--color-fg);
+  --primary: var(--color-amber);
+  --primary-foreground: var(--color-void);
+  --secondary: var(--color-cyan);
+  --secondary-foreground: var(--color-void);
+  --muted: var(--color-elevated);
+  --muted-foreground: var(--color-muted);
+  --accent: var(--color-amber);
+  --accent-foreground: var(--color-void);
+  --destructive: var(--color-red);
+  --destructive-foreground: var(--color-bone);
+  --border: var(--color-line);
+  --input: var(--color-line);
+  --ring: var(--color-amber);
+  --radius: 0;
+}
+
+/* ── Map shadcn aliases into Tailwind utility namespace so          │
+   │  bg-background / border-border / ring-ring resolve at runtime.   */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted-shadcn: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius: var(--radius);
 }
 
 /* ── Base ── */
@@ -78,7 +130,9 @@ body {
   color: var(--color-bone);
 }
 
-/* Respect reduced motion */
+/* Respect reduced motion — note this only affects CSS animations/
+   transitions; motion/react JS variants are handled per-component via
+   the useReducedMotion() hook. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
