@@ -67,12 +67,11 @@ export function CallingCards() {
           const clipPath = clipPaths[i % clipPaths.length]
           return (
             <li key={project.id}>
-              <motion.button
+              <button
                 type="button"
-                layoutId={`card-${project.id}`}
                 onClick={() => setActiveId(project.id)}
                 className={clsx(
-                  "group block w-full text-left bg-elevated/70 border-2 p-5 md:p-6 relative overflow-hidden",
+                  "group block w-full text-left bg-elevated/70 border-2 p-5 md:p-6 relative overflow-hidden cursor-pointer",
                   "transition-transform hover:-translate-y-0.5 hover:translate-x-0.5 focus-visible:-translate-y-0.5",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-void",
                   accentBorder[project.accent]
@@ -89,7 +88,7 @@ export function CallingCards() {
                 />
 
                 <CardFace project={project} />
-              </motion.button>
+              </button>
             </li>
           )
         })}
@@ -103,8 +102,8 @@ export function CallingCards() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: dur.fast }}
-            className="fixed inset-0 bg-void/85 backdrop-blur-md grid place-items-center p-4 md:p-12"
+            transition={{ duration: dur.fast, ease: ease.snap }}
+            className="fixed inset-0 bg-void/85 backdrop-blur-md grid place-items-center p-4 md:p-12 cursor-pointer"
             style={{ zIndex: 70 }}
             onClick={close}
             role="dialog"
@@ -112,11 +111,13 @@ export function CallingCards() {
             aria-labelledby={`card-${active.id}-title`}
           >
             <motion.div
-              layoutId={`card-${active.id}`}
-              transition={{ duration: dur.normal, ease: ease.punch }}
+              initial={{ opacity: 0, scale: 0.96, y: 8 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.97, y: 4 }}
+              transition={{ duration: dur.fast, ease: ease.snap }}
               onClick={(e) => e.stopPropagation()}
               className={clsx(
-                "relative w-full max-w-3xl bg-elevated border-2 p-6 md:p-10 max-h-[85vh] overflow-y-auto",
+                "relative w-full max-w-3xl bg-elevated border-2 p-6 md:p-10 max-h-[85vh] overflow-y-auto cursor-default",
                 accentBorder[active.accent]
               )}
               style={{
@@ -128,7 +129,7 @@ export function CallingCards() {
               <button
                 type="button"
                 onClick={close}
-                className="absolute top-4 right-6 font-mono text-ui text-muted hover:text-red transition-colors"
+                className="absolute top-4 right-6 font-mono text-ui text-muted hover:text-red transition-colors cursor-pointer"
                 aria-label="Close project detail"
               >
                 ✕ CLOSE
