@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@custom-variant dark (&:is(.dark *));
+
 @theme {
   /* ── Palette: Terminal (default UI) — OLED black canvas ── */
   --color-void: #000000;
@@ -57,10 +59,10 @@
 
   color-scheme: dark;
 
-  /* ── shadcn/ui expected variables — aliased to project tokens.       │
-     │  Keep these as alias-only so re-running `pnpm dlx shadcn add`     │
-     │  doesn't conflict with the design system. Edit the underlying    │
-     │  project token (--color-*) above, NOT these aliases.             */
+  /* ── shadcn/ui expected variables — aliased to project tokens.      │
+     │  Keep these as alias-only so re-running `pnpm dlx shadcn add`    │
+     │  doesn't conflict with the design system. Edit the underlying   │
+     │  project token (--color-*) above, NOT these aliases.            */
   --background: var(--color-void);
   --foreground: var(--color-fg);
   --card: var(--color-elevated);
@@ -106,6 +108,10 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --radius: var(--radius);
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
 }
 
 /* ── Base ── */
@@ -141,5 +147,12 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* shadcn primitives expect these base styles for border/ring defaults. */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
 }
