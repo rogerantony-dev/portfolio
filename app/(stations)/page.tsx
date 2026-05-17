@@ -43,6 +43,7 @@ export default function NowPage() {
         <Button
           variant="pa-amber"
           size="lg-pa"
+          nativeButton={false}
           render={
             <Link href="/works" className="group gap-3">
               <span className="font-display tracking-wider normal-case">

@@ -81,6 +81,7 @@ export default function ContactPage() {
         <Button
           variant="pa-yellow"
           size="lg-pa"
+          nativeButton={false}
           render={
             <a href={profile.cvUrl} download className="gap-3">
               <span aria-hidden="true">⬇</span>

@@ -30,6 +30,7 @@ export default function NotFound() {
                 variant="pa-amber-outline"
                 size="lg-pa"
                 className="mt-6"
+                nativeButton={false}
                 render={<Link href="/">▸ RETURN TO NOW</Link>}
               />
             </div>
