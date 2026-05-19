@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { notFound } from "next/navigation"
+import { MDXRemote } from "next-mdx-remote/rsc"
 import { getPost, posts } from "@/lib/posts"
 import type { Metadata } from "next"
 
@@ -73,19 +74,9 @@ export default async function PostPage({
 
       <div className="border-t border-line/40" />
 
-      <div className="font-sans text-fg leading-relaxed space-y-4">
+      <div className="font-sans text-fg leading-relaxed space-y-4 [&_p]:text-ui [&_p]:leading-relaxed [&_em]:text-muted [&_a]:text-amber [&_a:hover]:text-yellow [&_a]:underline [&_a]:underline-offset-4">
         <p className="text-muted font-mono text-ui italic">{post.excerpt}</p>
-
-        <div className="border border-line/40 bg-elevated/40 p-6 font-mono text-ui">
-          <p className="text-amber tracking-[0.3em]">▸ DRAFT</p>
-          <p className="text-muted mt-3">
-            // this post is a placeholder. Real content arrives when this slug
-            <br />
-            // is wired to an MDX file or a CMS. For now it&apos;s here to
-            <br />
-            // prove the route, metadata, and back-navigation all work.
-          </p>
-        </div>
+        <MDXRemote source={post.body} />
       </div>
     </article>
   )
