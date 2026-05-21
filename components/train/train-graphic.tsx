@@ -1,16 +1,59 @@
-// SVG locomotive + one ICF-style coach, Indian Railways styling.
+// SVG locomotive + three ICF-style coaches, Indian Railways styling.
 // Engine: WAP-class flat-front, red body with yellow nose flashes,
-// smokestack + idle exhaust puffs, pulsing headlight glow.
-// Coach: ICF blue with yellow upper-stripe, row of small windows,
-// "VELVET LINE" stencil, end-of-coach door.
+// smokestack + billowing exhaust puffs, pulsing headlight glow.
+// Coaches: ICF blue with yellow upper-stripe, three large windows each
+// framing a single chair silhouette, "VELVET LINE" stencil, end door.
 // All idle animations are SMIL <animate> so the component stays RSC.
 // The 1.5px bob is applied by the outer wrapper in RouteMap.
+
+const coachOffsets = [61, 135, 209] as const
+
+function Coach() {
+  return (
+    <>
+      {/* Roof shadow */}
+      <rect x="0" y="18" width="72" height="2" fill="#0F1F4D" />
+      {/* Blue body */}
+      <rect x="0" y="20" width="72" height="22" fill="#1E3A8A" />
+      {/* Yellow upper stripe */}
+      <rect x="0" y="22" width="72" height="2.5" fill="#FFD500" />
+      {/* Three windows, each framing a single chair silhouette */}
+      {[4, 24, 44].map((wx) => {
+        const cx = wx + 8
+        return (
+          <g key={wx}>
+            <rect x={wx} y={25} width={16} height={8} fill="#0A1530" />
+            <rect x={cx - 1} y={26.5} width={2} height={5.5} fill="#FFD500" />
+            <rect x={cx - 2.5} y={30.5} width={5} height={1.2} fill="#FFD500" />
+          </g>
+        )
+      })}
+      {/* Stencil */}
+      <text
+        x="32"
+        y="40"
+        fontFamily="monospace"
+        fontSize="3"
+        fill="#FFD500"
+        textAnchor="middle"
+        fontWeight="bold"
+        letterSpacing="0.5"
+      >
+        VELVET LINE
+      </text>
+      {/* End door */}
+      <rect x="62" y="26" width="6" height="14" fill="#000000" />
+      <rect x="64.5" y="32" width="1" height="2" fill="#FFD500" />
+    </>
+  )
+}
+
 export function TrainGraphic({ className }: { className?: string }) {
   return (
     <svg
-      viewBox="0 -10 140 66"
-      width="70"
-      height="33"
+      viewBox="0 -42 290 98"
+      width="145"
+      height="49"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
       aria-hidden="true"
@@ -20,71 +63,91 @@ export function TrainGraphic({ className }: { className?: string }) {
       <g>
         {/* Smokestack */}
         <rect x="44" y="10" width="4" height="4" fill="#0A0A0A" />
-        {/* Exhaust puffs (three, staggered) — rise + grow + fade */}
+        {/* Exhaust puffs — three large billows, rise + grow + fade */}
         <g>
-          <circle cx="46" cy="11" r="1.5" fill="#8A95A5" opacity="0">
+          <circle cx="46" cy="10" r="3" fill="#A8B2C0" opacity="0">
             <animate
               attributeName="cy"
-              values="11;-6"
-              dur="1.8s"
+              values="10;-30"
+              dur="2.8s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="cx"
+              values="46;42"
+              dur="2.8s"
               repeatCount="indefinite"
             />
             <animate
               attributeName="r"
-              values="1.5;3"
-              dur="1.8s"
+              values="3;11"
+              dur="2.8s"
               repeatCount="indefinite"
             />
             <animate
               attributeName="opacity"
-              values="0;0.55;0"
-              dur="1.8s"
+              values="0;0.8;0"
+              dur="2.8s"
               repeatCount="indefinite"
             />
           </circle>
-          <circle cx="46" cy="11" r="1.5" fill="#8A95A5" opacity="0">
+          <circle cx="46" cy="10" r="3.5" fill="#8A95A5" opacity="0">
             <animate
               attributeName="cy"
-              values="11;-6"
-              dur="1.8s"
-              begin="0.6s"
+              values="10;-24"
+              dur="2.8s"
+              begin="0.9s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="cx"
+              values="46;50"
+              dur="2.8s"
+              begin="0.9s"
               repeatCount="indefinite"
             />
             <animate
               attributeName="r"
-              values="1.5;3"
-              dur="1.8s"
-              begin="0.6s"
+              values="3.5;12"
+              dur="2.8s"
+              begin="0.9s"
               repeatCount="indefinite"
             />
             <animate
               attributeName="opacity"
-              values="0;0.55;0"
-              dur="1.8s"
-              begin="0.6s"
+              values="0;0.75;0"
+              dur="2.8s"
+              begin="0.9s"
               repeatCount="indefinite"
             />
           </circle>
-          <circle cx="46" cy="11" r="1.5" fill="#8A95A5" opacity="0">
+          <circle cx="46" cy="10" r="3" fill="#9AA4B2" opacity="0">
             <animate
               attributeName="cy"
-              values="11;-6"
-              dur="1.8s"
-              begin="1.2s"
+              values="10;-20"
+              dur="2.8s"
+              begin="1.8s"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="cx"
+              values="46;45"
+              dur="2.8s"
+              begin="1.8s"
               repeatCount="indefinite"
             />
             <animate
               attributeName="r"
-              values="1.5;3"
-              dur="1.8s"
-              begin="1.2s"
+              values="3;10"
+              dur="2.8s"
+              begin="1.8s"
               repeatCount="indefinite"
             />
             <animate
               attributeName="opacity"
-              values="0;0.55;0"
-              dur="1.8s"
-              begin="1.2s"
+              values="0;0.7;0"
+              dur="2.8s"
+              begin="1.8s"
               repeatCount="indefinite"
             />
           </circle>
@@ -144,39 +207,12 @@ export function TrainGraphic({ className }: { className?: string }) {
         <rect x="58" y="30" width="3" height="2.5" fill="#2A3340" />
       </g>
 
-      {/* ────── COACH (ICF, VELVET LINE branded) ────── */}
-      <g transform="translate(61 0)">
-        {/* Roof shadow */}
-        <rect x="0" y="18" width="72" height="2" fill="#0F1F4D" />
-        {/* Blue body */}
-        <rect x="0" y="20" width="72" height="22" fill="#1E3A8A" />
-        {/* Yellow upper stripe */}
-        <rect x="0" y="22" width="72" height="2.5" fill="#FFD500" />
-        {/* Window row */}
-        <rect x="3" y="26" width="6" height="6" fill="#000000" />
-        <rect x="11" y="26" width="6" height="6" fill="#000000" />
-        <rect x="19" y="26" width="6" height="6" fill="#000000" />
-        <rect x="27" y="26" width="6" height="6" fill="#000000" />
-        <rect x="35" y="26" width="6" height="6" fill="#000000" />
-        <rect x="43" y="26" width="6" height="6" fill="#000000" />
-        <rect x="51" y="26" width="6" height="6" fill="#000000" />
-        {/* Stencil */}
-        <text
-          x="32"
-          y="40"
-          fontFamily="monospace"
-          fontSize="3"
-          fill="#FFD500"
-          textAnchor="middle"
-          fontWeight="bold"
-          letterSpacing="0.5"
-        >
-          VELVET LINE
-        </text>
-        {/* End door */}
-        <rect x="62" y="26" width="6" height="14" fill="#000000" />
-        <rect x="64.5" y="32" width="1" height="2" fill="#FFD500" />
-      </g>
+      {/* ────── COACHES (3 × ICF, VELVET LINE branded) ────── */}
+      {coachOffsets.map((offset) => (
+        <g key={offset} transform={`translate(${offset} 0)`}>
+          <Coach />
+        </g>
+      ))}
 
       {/* ────── BOGIES / WHEELS ────── */}
       <g>
@@ -205,27 +241,31 @@ export function TrainGraphic({ className }: { className?: string }) {
           stroke="#2A3340"
           strokeWidth="0.4"
         />
-        {/* Coach — 2 bogies */}
-        <circle
-          cx="72"
-          cy="46"
-          r="3"
-          fill="#0A0A0A"
-          stroke="#2A3340"
-          strokeWidth="0.4"
-        />
-        <circle
-          cx="124"
-          cy="46"
-          r="3"
-          fill="#0A0A0A"
-          stroke="#2A3340"
-          strokeWidth="0.4"
-        />
+        {/* Each coach — 2 bogies */}
+        {coachOffsets.map((offset) => (
+          <g key={offset}>
+            <circle
+              cx={11 + offset}
+              cy={46}
+              r={3}
+              fill="#0A0A0A"
+              stroke="#2A3340"
+              strokeWidth="0.4"
+            />
+            <circle
+              cx={63 + offset}
+              cy={46}
+              r={3}
+              fill="#0A0A0A"
+              stroke="#2A3340"
+              strokeWidth="0.4"
+            />
+          </g>
+        ))}
       </g>
 
       {/* ────── RAIL SHADOW under the wheels ────── */}
-      <rect x="2" y="50" width="130" height="1" fill="#2A3340" opacity="0.5" />
+      <rect x="2" y="50" width="280" height="1" fill="#2A3340" opacity="0.5" />
     </svg>
   )
 }
