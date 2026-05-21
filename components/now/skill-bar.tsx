@@ -13,12 +13,12 @@ const SEGMENTS = 10
 export function SkillBar({ skill }: { skill: Skill }) {
   const filled = Math.round((skill.level / 100) * SEGMENTS)
   return (
-    <div className="flex items-center gap-3 font-mono text-ui">
-      <span className="text-muted w-28 shrink-0 uppercase tracking-wider">
+    <div className="flex items-center gap-2 sm:gap-3 font-mono text-micro sm:text-ui">
+      <span className="text-muted w-20 sm:w-28 shrink-0 uppercase tracking-wider">
         {skill.name}
       </span>
       <div
-        className="flex gap-[3px]"
+        className="flex gap-[2px] sm:gap-[3px]"
         role="progressbar"
         aria-label={`${skill.name} skill level`}
         aria-valuenow={skill.level}
@@ -29,13 +29,13 @@ export function SkillBar({ skill }: { skill: Skill }) {
           <span
             key={i}
             className={clsx(
-              "block w-3 h-3 border border-line/40",
+              "block w-2 h-2 sm:w-3 sm:h-3 border border-line/40",
               i < filled ? fillByColor[skill.color] : "bg-elevated/60"
             )}
           />
         ))}
       </div>
-      <span className="text-fg w-8 text-right tabular-nums">{skill.level}</span>
+      <span className="text-fg w-7 sm:w-8 text-right tabular-nums shrink-0">{skill.level}</span>
     </div>
   )
 }

@@ -4,7 +4,7 @@ export function StatusBar() {
       className="fixed top-0 inset-x-0 border-b border-line bg-void/85 backdrop-blur-sm"
       style={{ zIndex: "var(--z-statusbar)" }}
     >
-      <div className="mx-auto max-w-[1280px] px-6 h-12 flex items-center justify-between font-mono text-ui">
+      <div className="mx-auto max-w-[1280px] px-4 md:px-6 h-12 flex items-center justify-between font-mono text-ui">
         <div className="flex items-center gap-3">
           <span className="text-red" aria-hidden="true">
             ●●●

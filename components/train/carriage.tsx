@@ -10,7 +10,7 @@ export function Carriage({ children }: { children: React.ReactNode }) {
         zIndex: "var(--z-content)",
       }}
     >
-      <div className="rounded-md border border-line/50 bg-panel/40 backdrop-blur-[1px] p-6 md:p-12 min-h-[60vh]">
+      <div className="rounded-md border border-line/50 bg-panel/40 backdrop-blur-[1px] p-4 sm:p-6 md:p-12 min-h-[60vh]">
         {children}
       </div>
     </div>
